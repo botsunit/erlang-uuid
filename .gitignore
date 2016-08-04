@@ -1,2 +1,5 @@
 *.beam
 ebin/*.app
+_build/
+test/eunit/
+

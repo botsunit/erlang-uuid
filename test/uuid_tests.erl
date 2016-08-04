@@ -162,10 +162,10 @@ urn_test() ->
     UuidStr = uuid:to_string(UuidBin),
     UrnStr  = uuid:to_uuid_urn(UuidStr),
 
-    [$u,$r,$n,$:,$u,$u,$i,$d,$:|UrnUuidBinStr] = UrnBin,
+    [$u, $r, $n, $:, $u, $u, $i, $d, $:|UrnUuidBinStr] = UrnBin,
     ?assertMatch(UrnUuidBinStr, uuid:to_string(UuidBin)),
 
-    [$u,$r,$n,$:,$u,$u,$i,$d,$:|UrnUuidStr] = UrnStr,
+    [$u, $r, $n, $:, $u, $u, $i, $d, $:|UrnUuidStr] = UrnStr,
     ?assertMatch(UrnUuidStr, UuidStr),
 
     ?assertMatch(UrnUuidBinStr, UrnUuidStr),
@@ -226,13 +226,13 @@ do_randomized_and_timebased_uuids_change_enough_test() ->
     uuid_mask(fun uuid:uuid4/0, "^XXXXXXXX-XXXX-4XXX-XXXX-XXXXXXXXXXXX$").
 
 uuid_mask(F, Mask) ->
-    ?assertEqual({match,[{0,36}]},
+    ?assertEqual({match, [{0, 36}]},
         re:run(do_uuid_mask(F, 100), Mask)).
 
 do_uuid_mask(F, N) ->
     lists:foldl(fun mask/2,
         uuid:to_string(F()),
-        [uuid:to_string(F()) || _ <- lists:seq(1,N)]).
+        [uuid:to_string(F()) || _ <- lists:seq(1, N)]).
 
 mask(X, Y) -> lists:map(fun eq_or_x/1, lists:zip(X, Y)).
 
